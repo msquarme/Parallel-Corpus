@@ -72,8 +72,6 @@ def merge_books(lang, books):
                 with open(i,'rb') as r:
                     write_file.write(r.read())
 
-
-
 merge_books("Tigrigna",ti_books)
 merge_books("Amharic",am_books)
 merge_books("English",en_books)
@@ -82,13 +80,10 @@ merge_books("English",en_books)
 # Creating a parallel Corpus
 
 
-ti = pd.read_fwf('Scrapped/Tigrigna/All.txt',header=None)
-ti = pd.DataFrame(ti[0])
+ti = pd.read_csv('Scrapped/Tigrigna/All.txt',delimiter="\n",header=None)
 ti.columns = ["Tigrigna"]
 
-
-en = pd.read_fwf('Scrapped/English/All.txt',header=None)
-en = pd.DataFrame(en[0])
+en = pd.read_csv('Scrapped/English/All.txt',delimiter="\n",header=None)
 en.columns = ["English"]
 
 data = pd.concat([en,ti],axis=1)
@@ -98,8 +93,7 @@ data.to_csv("en_ti.csv",index=False)
 
 
 
-am = pd.read_fwf('Scrapped/Amharic/All.txt',header=None)
-am = pd.DataFrame(am[0])
+am = pd.read_fwf('Scrapped/Amharic/All.txt',delimiter="\n",header=None)
 am.columns = ["Amharic"]
 
 #reset 'data' dataframe
